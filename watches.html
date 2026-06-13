@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holy-Watch | Exklusive Uhren & Hommagen</title>
+  <style>
+    :root{
+      --bg:#070707;
+      --panel:#0f0f10;
+      --panel-2:#141416;
+      --text:#f4f1ea;
+      --muted:#b9b2a6;
+      --gold:#c8a96a;
+      --gold-2:#8f7440;
+      --line:rgba(200,169,106,.22);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1180px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(200,169,106,.08), transparent 32%),
+        linear-gradient(180deg, #050505 0%, #0a0a0b 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(16px);
+      background:rgba(7,7,7,.76);
+      border-bottom:1px solid rgba(200,169,106,.15);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between; gap:24px;
+      min-height:78px;
+    }
+    .brand{display:flex; align-items:center; gap:14px; letter-spacing:.18em; text-transform:uppercase; font-weight:700;}
+    .mark{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(180deg, rgba(200,169,106,.18), rgba(200,169,106,.04));
+      border:1px solid var(--line);
+      color:var(--gold); font-family:Georgia, serif; font-size:20px;
+      box-shadow:var(--shadow);
+    }
+    .nav-links{display:flex; gap:22px; flex-wrap:wrap; color:var(--muted); font-size:.95rem}
+    .nav-links a:hover,.nav-links a:focus{color:var(--gold)}
+    .hero{padding:78px 0 36px}
+    .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:stretch}
+    .hero-card,.glass{background:linear-gradient(180deg, rgba(20,20,22,.92), rgba(10,10,11,.92)); border:1px solid rgba(200,169,106,.16); box-shadow:var(--shadow); border-radius:var(--radius)}
+    .hero-card{padding:40px}
+    .eyebrow{color:var(--gold); text-transform:uppercase; letter-spacing:.28em; font-size:.76rem; margin:0 0 18px}
+    h1{margin:0 0 16px; font-size:clamp(2.4rem, 5vw, 4.8rem); line-height:1.02; letter-spacing:-.03em}
+    .lead{color:#ddd7cc; font-size:1.08rem; max-width:62ch; margin:0 0 26px}
+    .actions{display:flex; gap:14px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:14px 20px; border-radius:999px; font-weight:700; letter-spacing:.02em;
+      border:1px solid rgba(200,169,106,.28);
+    }
+    .btn.primary{background:linear-gradient(180deg, rgba(200,169,106,.22), rgba(200,169,106,.08)); color:var(--text)}
+    .btn.secondary{background:transparent; color:var(--muted)}
+    .meta{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:28px}
+    .meta div{padding:16px; background:rgba(255,255,255,.02); border:1px solid rgba(200,169,106,.12); border-radius:14px}
+    .meta strong{display:block; color:var(--gold); font-size:1.1rem; margin-bottom:4px}
+    .hero-side{padding:28px; display:flex; flex-direction:column; justify-content:space-between; gap:18px}
+    .feature-box{padding:22px; border-radius:16px; background:rgba(255,255,255,.02); border:1px solid rgba(200,169,106,.12)}
+    .feature-box h2,.section-title{margin:0 0 10px; font-size:1.5rem}
+    .feature-box p,.section-sub{margin:0; color:var(--muted)}
+    .section{padding:30px 0}
+    .section-title{font-size:2rem; letter-spacing:-.02em}
+    .gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:22px}
+    .watch{overflow:hidden}
+    .watch img{width:100%; height:300px; object-fit:cover; display:block; filter:grayscale(8%) contrast(1.02)}
+    .watch .info{padding:18px}
+    .watch h3{margin:0 0 8px; font-size:1.15rem}
+    .specs{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+    .spec{font-size:.85rem; color:#efe7d8; border:1px solid rgba(200,169,106,.2); background:rgba(200,169,106,.06); padding:6px 10px; border-radius:999px}
+    .trust{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:22px}
+    .trust .item{padding:24px; border-radius:16px; background:rgba(255,255,255,.02); border:1px solid rgba(200,169,106,.12)}
+    .badge{width:46px;height:46px;border-radius:14px; display:grid;place-items:center; margin-bottom:14px; background:linear-gradient(180deg, rgba(200,169,106,.22), rgba(200,169,106,.06)); border:1px solid rgba(200,169,106,.22); color:var(--gold); font-size:1.2rem}
+    .contact{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:22px}
+    .contact-box{padding:28px}
+    .contact-list{list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px}
+    .contact-list li{padding:14px 16px; border-radius:12px; background:rgba(255,255,255,.02); border:1px solid rgba(200,169,106,.12)}
+    .footer{padding:34px 0 44px; color:var(--muted); font-size:.92rem; text-align:center}
+    @media (max-width: 920px){
+      .hero-grid,.gallery,.trust,.contact,.meta{grid-template-columns:1fr}
+      .watch img{height:260px}
+      .nav-inner{padding:14px 0; flex-direction:column; align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand"><div class="mark">H</div><div>Holy-Watch</div></div>
+      <nav class="nav-links">
+        <a href="#ueber">Über Holy-Watch</a>
+        <a href="#kollektion">Kollektion</a>
+        <a href="#vertrauen">Vertrauen</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-card">
+          <p class="eyebrow">Exklusive Uhren & Hommagen</p>
+          <h1>Holy-Watch  
+                        vertrauenswürdiger Händler für kuratierte Luxus-Ästhetik.</h1>
+          <p class="lead" id="ueber">Sorgfältig ausgewählte Uhren mit hochwertiger Anmutung, transparenter Kommunikation und einem Service, der Professionalität, Stil und Verlässlichkeit in den Mittelpunkt stellt.</p>
+          <div class="actions">
+            <a class="btn primary" href="#kollektion">Kollektion ansehen</a>
+            <a class="btn secondary" href="#kontakt">Bestellanfrage senden</a>
+          </div>
+          <div class="meta">
+            <div><strong>Luxus-Look</strong><span>Minimalistisch, edel, überzeugend</span></div>
+            <div><strong>Geprüft</strong><span>Jede Uhr vor Versand kontrolliert</span></div>
+            <div><strong>Diskret</strong><span>Persönlicher, deutscher Support</span></div>
+          </div>
+        </div>
+
+        <aside class="hero-side glass">
+          <div class="feature-box">
+            <h2>Kuratiert für Anspruchsvolle</h2>
+            <p>Muhammed präsentiert exklusive Uhren und Hommagen in einer Auswahl, die Qualität, Stil und ein starkes Preis-Leistungs-Verhältnis verbindet.</p>
+          </div>
+          <div class="feature-box">
+            <h2>Transparenz & Vertrauen</h2>
+            <p>Klarer Ablauf, schnelle Rückmeldung und ein professioneller Auftritt schaffen Sicherheit vom ersten Kontakt bis zum Versand.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="kollektion">
+      <div class="wrap">
+        <h2 class="section-title">Uhrengalerie</h2>
+        <p class="section-sub">Eine stilvolle Auswahl mit eleganter Präsentation und klaren Angaben.</p>
+        <div class="gallery">
+          <article class="watch glass"><img src="watch1.jpg" alt="Uhr 1" /><div class="info"><h3>AP-Style Hommage</h3><div class="specs"><span class="spec">Arabische ziffern</span><span class="spec">Matt-schwarz</span><span class="spec">17€</span></div></div></article>
+          <article class="watch glass"><img src="watch2.jpg" alt="Uhr 2" /><div class="info"><h3>Elegante Dresswatch</h3><div class="specs"><span class="spec">Quarz-Werk</span><span class="spec">Edelstahlgehäuse</span><span class="spec">17€</span></div></div></article>
+          <article class="watch glass"><img src="watch3.jpg" alt="Uhr 3" /><div class="info"><h3>Sportliche Hommage</h3><div class="specs"><span class="spec">Quarz-Werk</span><span class="spec">Edelstahlgehäuse</span><span class="spec">17€</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="vertrauen">
+      <div class="wrap">
+        <h2 class="section-title">Vertrauenssiegel</h2>
+        <p class="section-sub">Drei klare Zusagen für ein sicheres, professionelles Kauferlebnis.</p>
+        <div class="trust">
+          <div class="item"><div class="badge">1</div><h3>Schneller, versicherter DHL-Versand</h3><p>Direkt aus Hannover, Deutschland — zügig, sauber verpackt und vollständig versichert.</p></div>
+          <div class="item"><div class="badge">2</div><h3>Zertifizierte Qualitätsprüfung</h3><p>Jede Uhr wird vor dem Versand sorgfältig geprüft, damit sie in einem überzeugenden Zustand ankommt.</p></div>
+          <div class="item"><div class="badge">3</div><h3>Unkomplizierter, deutscher Support</h3><p>Klare Kommunikation, schnelle Antworten und ein Service, der einfach und zuverlässig funktioniert.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="wrap contact">
+        <div class="contact-box glass">
+          <h2 class="section-title">Kontakt für Bestellanfragen</h2>
+          <p class="section-sub">Bitte mit gewünschtem Modell, Name und Lieferadresse anfragen.</p>
+          <ul class="contact-list">
+            <li><strong>E-Mail:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bfd2cad7ded2d2dadbffdac7ded2cfd3da91dcd0d2">Holywatchh@gmail.com</a></li>
+            <li><strong>Vinted:</strong> https://vinted.de/member/292473709-mhmdemu</li>
+            <li><strong>WhatsApp:</strong> +49 1633834095</li>
+          </ul>
+        </div>
+        <div class="contact-box glass">
+          <h2 class="section-title">Warum Wir?</h2>
+          <p class="section-sub">Ein hochwertiger Auftritt, transparente Werte und die konsequente Ausrichtung auf Vertrauen machen das Business sofort seriös und markenfähig.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">© Muhammed Watches — Exklusive Uhren & Hommagen</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
