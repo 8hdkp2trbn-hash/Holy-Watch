@@ -663,14 +663,32 @@
     const DAY_NAMES = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
 
     function berlinNow(){
-      const parts = new Intl.DateTimeFormat('de-DE', {
-        timeZone:'Europe/Berlin', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false
-      }).formatToParts(new Date());
-      const map = {};
-      parts.forEach(p => map[p.type] = p.value);
-      const weekdayMap = { So:0, Mo:1, Di:2, Mi:3, Do:4, Fr:5, Sa:6 };
-      return { day: weekdayMap[map.weekday], minutes: parseInt(map.hour,10)*60 + parseInt(map.minute,10) };
-    }
+  const now = new Date();
+
+  // Wochentag zuverlässig holen (englische Kurzform ist stabiler)
+  const dayName = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Berlin',
+    weekday: 'short'
+  }).format(now); // ergibt "Mon", "Tue", "Wed" ...
+
+  const weekdayMap = { Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6 };
+  const day = weekdayMap[dayName];
+
+  // Uhrzeit
+  const timeParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Europe/Berlin',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  }).formatToParts(now);
+
+  const map = {};
+  timeParts.forEach(p => map[p.type] = p.value);
+
+  const minutes = parseInt(map.hour, 10) * 60 + parseInt(map.minute, 10);
+
+  return { day, minutes };
+}
 
     function fmt(mins){
       const h = Math.floor(mins/60).toString().padStart(2,'0');
